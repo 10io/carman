@@ -1,0 +1,23 @@
+<tr>
+  <td><%= car.id %></td>
+  <td><%= car.type %></td>
+  <td><%= car.brand %></td>
+  <td><%= car.model %></td>
+  <td><%= car.year %></td>
+  <td><%= car.engine%></td>
+  <td><%= car.horsepower %></td>
+  <td><%= car.mpg %></td>
+  <td><%= car.range %></td>
+  <td><%= car.traction %></td>
+  <td>
+    <% if car.suv %>
+      <span class="text-success glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+    <% end %>
+  </td>
+  <td><%= car.head_lamp %></td>
+  <td>
+    <% if car.blind_spot_detection %>
+      <span class="text-success glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+    <% end %>
+  </td>
+</tr>

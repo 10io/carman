@@ -1,0 +1,38 @@
+<h2>Available cars</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Engine</th>
+      <th>
+        HP
+        <span class="text-info glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Horse Power"></span>
+      </th>
+      <th>
+        MPG
+        <span class="text-info glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Miles Per Gallon"></span>
+      </th>
+      <th>Range</th>
+      <th>Traction</th>
+      <th>
+        SUV
+        <span class="text-info glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Sport Utility Vehicle"></span>
+      </th>
+      <th>Head Lamps</th>
+      <th>
+        BSD
+        <span class="text-info glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Blind Spot Detection"></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @cars %>
+  </tbody>
+</table>
+<%= link_to(new_car_path, :class => "btn btn-sm btn-success pull-left", :role => "button") do %>
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Car
+<% end %>
