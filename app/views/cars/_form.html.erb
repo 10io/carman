@@ -1,7 +1,7 @@
 <%= form_for(@car, :remote => true) do |f| %>
   <div class="form-group">
     <%= f.label :type %>
-    <%= f.select :type, Car.types.keys, {}, :class => "form-control" %>
+    <%= f.select :type, Car.types.keys, {}, :class => "form-control", :data => { :form_update_url => update_form_cars_path } %>
   </div>
 
   <div class="form-group <%= "has-error has-feedback" if @car.errors[:brand].any? %>">
@@ -30,23 +30,27 @@
 
   <div class="form-group">
     <%= f.label :engine %>
-    <%= f.select :engine, engine_options(@car), {}, :class => "form-control" %>
+    <%= f.select :engine, engine_options(@car), {}, :class => "form-control", :data => { :form_update_url => update_form_cars_path } %>
   </div>
 
-  <div class="form-group <%= "hidden" if !@car.petrol? %>">
-    <%= f.label :horsepower, "Horse Power" %>
-    <%= f.number_field :horsepower, :class => "form-control" %>
-  </div>
+  <% if @car.petrol? %>
+    <div class="form-group">
+      <%= f.label :horsepower, "Horse Power" %>
+      <%= f.number_field :horsepower, :class => "form-control" %>
+    </div>
 
-  <div class="form-group <%= "hidden" if !@car.petrol? %>">
-    <%= f.label :mpg, "Miles Per Gallon" %>
-    <%= f.text_field :mpg, :class => "form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :mpg, "Miles Per Gallon" %>
+      <%= f.text_field :mpg, :class => "form-control" %>
+    </div>
+  <% end %>
 
-  <div class="form-group <%= "hidden" if !@car.electric? %>">
-    <%= f.label :range %>
-    <%= f.number_field :range, :class => "form-control" %>
-  </div>
+  <% if @car.electric? %>
+    <div class="form-group">
+      <%= f.label :range %>
+      <%= f.number_field :range, :class => "form-control" %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :traction %>
@@ -59,19 +63,23 @@
   </div>
 
   <div class="form-group">
-    <div class="checkbox <%= "hidden" if !@car.sedan? %>">
-      <label>
-        <%= f.check_box :suv %>
-        Sport Utility Vehicle
-      </label>
-    </div>
+    <% if @car.sedan? %>
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :suv %>
+          Sport Utility Vehicle
+        </label>
+      </div>
+    <% end %>
 
-    <div class="checkbox <%= "hidden" if !@car.luxury? %>">
-      <label>
-        <%= f.check_box :blind_spot_detection %>
-        Blind Spot Detection
-      </label>
-    </div>
+    <% if @car.luxury? %>
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :blind_spot_detection %>
+          Blind Spot Detection
+        </label>
+      </div>
+    <% end %>
   </div>
 
   <%= f.button(:class => "btn btn-success") do %>

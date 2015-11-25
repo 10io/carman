@@ -16,6 +16,12 @@ class CarsController < ApplicationController
     @car = Car.new
   end
 
+  def update_form
+    @car = Car.new(car_params)
+
+    render :new, :change => [:new_car]
+  end
+
   private
 
   def car_params
